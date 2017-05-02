@@ -11,7 +11,7 @@ int main (int argc, char *argv[]) {
 	setreuid(geteuid(),  geteuid());
 	
 	// Make sure we are in the right directory
-	if(chdir(TARGET_DIR) != 0) return -1;
+	if(chdir(TARGET_DIR) != 0) return 3;
 	
 	printf("Working on: %s\n", TARGET_DIR);
 	
@@ -22,6 +22,9 @@ int main (int argc, char *argv[]) {
 	} else if(res == 0) {
 		// We are the child process
 		execl(GIT_INST, "git", "pull", (char*) 0);
+		
+		// Some kind of problem
+		return 2;
 	} else {
 		printf("Spawned child %i!\n", res);
 		
@@ -30,11 +33,13 @@ int main (int argc, char *argv[]) {
 		printf("Done running git: %i\n", ret);
 	}
 	
-	// Git pull
-	execl(JEKYLL_INST, "jekyll", "build", (char*) 0);
+	// Jekyll build
+	char buffer[100];
+	sprintf(buffer, "%s build", JEKYLL_INST);
+	execl(BASH_INST, "bash", "-c", buffer, (char*) 0);
 	
 	// If execl returns, we have a problem
 	
-	return -1;
+	return 1;
 }
 
