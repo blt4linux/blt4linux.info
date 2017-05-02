@@ -29,7 +29,8 @@ h2 {
     background: #543e16; }
 
 .distro {
-  background: #3cd8e1; }
+  background: #3cd8e1;
+  display: none; }
   .distro p {
     padding: 1em 0.5em; }
 
