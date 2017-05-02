@@ -44,5 +44,7 @@ code {
   background: #3cd8e1;
   display: none;
   padding: 1em 0.5em; }
+  .distro ul {
+    margin: 0 0 0 2em; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -3,6 +3,8 @@
 <head>
 	<title>BLT For Linux</title>
 	<link rel="stylesheet" type="text/css" href="assets/styles.css"/>
+
+	<link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 	<header>
@@ -15,14 +17,13 @@
 		<h2>Installation</h2>
 
 		<div id="distros"
-		><span onclick="distro(this)" data-distro="debian" id="default-bttn">Debian GNU+Linux</span
-		><span onclick="distro(this)" data-distro="arch">Arch Linux</span
-		><span onclick="distro(this)" data-distro="other">Other</span
+		><span onclick="distro(this)" data-distro="installer" id="default-bttn">Debian & Arch (Installer)</span
+		><span onclick="distro(this)" data-distro="binary">Debian - Binary Package</span
 		><span onclick="distro(this)" data-distro="build">Manual Build</span
 		>
 		</div>
 
-		<div class="distro" id="distro-debian">
+		<div class="distro" id="distro-installer">
 			First, download a copy of BLT4L and switch to it's directory:
 			<code>
 				$ <span class="user-input">git clone https://github.com/blt4linux/blt4l.git</span><br/>
@@ -41,16 +42,106 @@
 			</code>
 		</div>
 
-		<div class="distro" id="distro-arch">
-			<p>TODO arch guide</p>
-		</div>
-
-		<div class="distro" id="distro-other">
-			<p>TODO generic downloads</p>
+		<div class="distro" id="distro-binary">
+			Go to the <a href="https://github.com/blt4linux/blt4l/releases/latest">GitHub release page</a>
+			and download the archive appropriate for your distro.
+			<br/>
+			Next, extract the archive and move 'mods' and 'libblt_loader.so' to your PAYDAY 2 folder.
+			This can be found in "~/.steam/steam/steamapps/common/PAYDAY 2/"
+			<br/>
+			You should find the hook in your build folder, named libblt_loader.so.
+			You will need to set LD_PRELOAD for the PAYDAY2 process to find the loader.
+			<br/>
+			If you set everything up correctly, you should be up and running with the BLT mod API in PAYDAY 2.
 		</div>
 
 		<div class="distro" id="distro-build">
-			<p>TODO manual build/installation guide</p>
+			First, install the packages we need to compile everything. How you
+			do that will vary depending on your distribution and package manager.
+			<ul>
+				<li>openssl</li>
+				<li>curl4-openssl</li>
+				<li>zlib</li>
+				<li>cmake</li>
+			</ul>
+			<br/>
+			Download a copy of BLT4L:
+			<code>
+				$ <span class="user-input">git clone https://github.com/blt4linux/blt4l.git</span><br/>
+				Cloning into 'blt4l'...<br/>
+				remote: Counting objects: 571, done.<br/>
+				remote: Total 571 (delta 0), reused 0 (delta 0), pack-reused 571<br/>
+				Receiving objects: 100% (571/571), 318.37 KiB | 167.00 KiB/s, done.<br/>
+				Resolving deltas: 100% (310/310), done.<br/>
+				$ <span class="user-input">cd blt4l</span>
+			</code>
+			<br/>
+			Download all the required submodules:
+			<code>
+				$ <span class="user-input">git submodule init</span><br/>
+				Submodule 'lua/Payday-2-BLT-Lua' (https://github.com/Luffyyy/Payday-2-BLT-Lua)
+				registered for path 'lua/Payday-2-BLT-Lua' <br/>
+				Submodule 'subhook' (https://github.com/Zeex/subhook.git) registered for path 'subhook' <br/>
+				$ <span class="user-input">git submodule update</span><br/>
+				Cloning into 'blt4l/lua/Payday-2-BLT-Lua'...<br/>
+				Cloning into 'blt4l/subhook'...<br/>
+				Submodule path 'lua/Payday-2-BLT-Lua': checked out '2a8f8a0767817bbe12fa7f0244718a308db40a34'<br/>
+				Submodule path 'subhook': checked out '9551217ba4fadbf729e810ab94b4ab7f67b4cfbe'
+			</code>
+			<br/>
+			Configure, ready for building:
+			<code>
+				$ <span class="user-input">mkdir build</span><br/>
+				$ <span class="user-input">cd build</span><br/>
+				$ <span class="user-input">cmake ..</span><br/>
+				-- The C compiler identification is GNU 6.3.1<br/>
+				-- The CXX compiler identification is GNU 6.3.1<br/>
+				-- Check for working C compiler: /usr/bin/cc<br/>
+				-- Check for working C compiler: /usr/bin/cc -- works<br/>
+				-- Detecting C compiler ABI info<br/>
+				-- Detecting C compiler ABI info - done<br/>
+				-- Detecting C compile features<br/>
+				-- Detecting C compile features - done<br/>
+				-- Check for working CXX compiler: /usr/bin/c++<br/>
+				-- Check for working CXX compiler: /usr/bin/c++ -- works<br/>
+				-- Detecting CXX compiler ABI info<br/>
+				-- Detecting CXX compiler ABI info - done<br/>
+				-- Detecting CXX compile features<br/>
+				-- Detecting CXX compile features - done<br/>
+				-- Found CURL: /usr/lib64/libcurl.so (found version "7.52.1")<br/>
+				-- Found OpenSSL: /usr/lib64/libssl.so;/usr/lib64/libcrypto.so (found version "1.0.2k")<br/>
+				-- Found ZLIB: /usr/lib64/libz.so (found version "1.2.11")<br/>
+				-- Configuring done<br/>
+				-- Generating done<br/>
+				-- Build files have been written to: blt4l/build
+			</code>
+			<br/>
+			Compile it:
+			<code>
+				$ <span class="user-input">make</span><br/>
+				Scanning dependencies of target blt_loader<br/>
+				[  9%] Building C object CMakeFiles/blt_loader.dir/subhook/subhook.c.o<br/>
+				[ 18%] Building CXX object CMakeFiles/blt_loader.dir/src/event.cc.o<br/>
+				[ 27%] Building CXX object CMakeFiles/blt_loader.dir/src/zip.cc.o<br/>
+				[ 36%] Building CXX object CMakeFiles/blt_loader.dir/src/fs.cc.o<br/>
+				[ 45%] Building CXX object CMakeFiles/blt_loader.dir/src/http.cc.o<br/>
+				[ 54%] Building CXX object CMakeFiles/blt_loader.dir/src/log.cc.o<br/>
+				[ 63%] Building CXX object CMakeFiles/blt_loader.dir/src/hook.cc.o<br/>
+				[ 72%] Building CXX object CMakeFiles/blt_loader.dir/src/lapi.cc.o<br/>
+				[ 81%] Building CXX object CMakeFiles/blt_loader.dir/src/lapi_http.cc.o<br/>
+				[ 90%] Building CXX object CMakeFiles/blt_loader.dir/src/blt_main.cc.o<br/>
+				[100%] Linking CXX shared library libblt_loader.so<br/>
+				[100%] Built target blt_loader
+			</code>
+			<br/>
+			You should find the hook in your build folder, named libblt_loader.so.
+			You will need to set LD_PRELOAD for the PAYDAY2 process to find the loader.
+			<br/>
+			Next, you will need to copy a LUA mod base to your PAYDAY 2 folder (or
+			whatever working directory you intend to run PAYDAY 2 in). There
+			is a symlink to the BLT LUA mod base (from the BLT4WIN submodule) under lua/mods.
+			<br/>
+			If you set everything up correctly, you should be up and running with the BLT mod API in PAYDAY 2.
 		</div>
 	</div>
 
