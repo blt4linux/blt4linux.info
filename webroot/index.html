@@ -1,1 +1,45 @@
-TODO!
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BLT For Linux</title>
+	<link rel="stylesheet" type="text/css" href="assets/styles.css"/>
+</head>
+<body>
+	<header>
+		<h1>BLT For Linux</h1>
+	</header>
+	<div id="content">
+		<h2>About</h2>
+		TODO text
+
+		<h2>Installation</h2>
+
+		<div id="distros"
+		><span onclick="distro(this)" data-distro="debian" id="default-bttn">Debian GNU+Linux</span
+		><span onclick="distro(this)" data-distro="arch">Arch Linux</span
+		><span onclick="distro(this)" data-distro="other">Other</span
+		><span onclick="distro(this)" data-distro="build">Manual Build</span
+		>
+		</div>
+
+		<div class="distro" id="distro-debian">
+			<p>TODO debian guide</p>
+		</div>
+
+		<div class="distro" id="distro-arch">
+			<p>TODO arch guide</p>
+		</div>
+
+		<div class="distro" id="distro-other">
+			<p>TODO generic downloads</p>
+		</div>
+
+		<div class="distro" id="distro-build">
+			<p>TODO manual build/installation guide</p>
+		</div>
+	</div>
+
+	<!--Load this last, as a best practice	 -->
+	<script type="text/javascript" src="assets/scripts.js"></script>
+</body>
+</html>

@@ -2,3 +2,13 @@
 # The compiled C binary
 /pull
 
+# The compiled CSS
+/webroot/assets/styles.css
+/webroot/assets/styles.css.map
+
+# Misc SASS stuff
+/.sass-cache
+
+# Intellij IDEA files
+/.idea
+/*.iml
