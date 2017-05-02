@@ -28,7 +28,7 @@ Now, run the installer script:
 
 ---
 
-# Installing with binary packages (Debian)
+## Installing with binary packages (Debian)
 Go to the [GitHub release page](https://github.com/blt4linux/blt4l/releases/latest)
 and download the archive appropriate for your distro.
 
@@ -39,6 +39,8 @@ You should find the hook in your build folder, named libblt_loader.so.
 You will need to set LD_PRELOAD for the PAYDAY2 process to find the loader.
 
 If you set everything up correctly, you should be up and running with the BLT mod API in PAYDAY 2.
+
+---
 
 ## Manual Build
 First, install the packages we need to compile everything. How you
