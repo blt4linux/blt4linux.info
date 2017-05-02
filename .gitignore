@@ -2,3 +2,11 @@
 # The compiled C binary
 /updater/pull
 
+# The compiled site, and other Jekyll-related stuff
+/_site
+/.sass-cache
+
+# Intellij IDEA stuff
+/.idea
+/*.iml
+
