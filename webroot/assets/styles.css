@@ -19,6 +19,18 @@ h1 {
 h2 {
   margin: 0.5em -1em; }
 
+code {
+  display: block;
+  width: 100%;
+  background: #000000;
+  color: #FFFFFF;
+  padding: 0.25em;
+  font-family: Hack, monospace, sans-serif;
+  font-size: 10pt;
+  margin: 0.5em 0; }
+  code .user-input {
+    font-weight: bold; }
+
 #distros {
   background: #c8943c; }
   #distros span {
@@ -30,8 +42,7 @@ h2 {
 
 .distro {
   background: #3cd8e1;
-  display: none; }
-  .distro p {
-    padding: 1em 0.5em; }
+  display: none;
+  padding: 1em 0.5em; }
 
 /*# sourceMappingURL=styles.css.map */

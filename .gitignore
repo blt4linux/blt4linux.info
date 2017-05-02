@@ -2,10 +2,10 @@
 # The compiled C binary
 /pull
 
-# Actually, let's send over the compiled CSS. Makes it easier to host.
-## The compiled CSS
+# Actually, let's send over the compiled CSS. Makes it easier to host. But do ignore the map file.
+# The compiled CSS
 #/webroot/assets/styles.css
-#/webroot/assets/styles.css.map
+/webroot/assets/styles.css.map
 
 # Misc SASS stuff
 /.sass-cache
