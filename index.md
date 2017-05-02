@@ -116,8 +116,15 @@ Compile it:
 	[100%] Built target blt_loader
 
 You should find the hook in your build folder, named libblt_loader.so.
-You will need to set LD_PRELOAD for the PAYDAY2 process to find the loader.
 
+### Setting LD_PRELOAD
+TODO: clean up a little
+
+Go into steam, and set the launch command to:
+
+	env LD_PRELOAD="$LD_PRELOAD ./libblt_loader.so" %command% -skip_intro
+
+### Copy across the mods folder
 Next, you will need to copy a LUA mod base to your PAYDAY 2 folder (or
 whatever working directory you intend to run PAYDAY 2 in). There
 is a symlink to the BLT LUA mod base (from the BLT4WIN submodule) under lua/mods.
