@@ -2,9 +2,20 @@
 layout: default
 ---
 
-Hello, World!
 # About
-TODO text
+BLT4Linux is a Linux port of the popular Better Lua injecTor (BLT)
+modding framework for the action shooter PAYDAY 2.
+
+While it is a rewrite of the C++ part of BLT, it uses the same Lua
+code and is compatible with the majority of PAYDAY 2 mods, with
+the notable exception of BeardLib.
+
+## Credits
+ - [Roman Hargrave](https://github.com/RomanHargrave) - Initial work, code, translations from BLT4WIN
+ - [Leonard König](https://github.com/LeonardKoenig) - C++ cleanup, linker work
+ - [Ozymandias117](https://github.com/Ozymandias117) - Fixed subhook on 64-bit platforms
+ - [James Wilkinson](https://github.com/JamesWilko) - BLT LUA (and BLT)
+ - [ZNixian](https://znix.xyz) - Hosting this website
 
 # Installation
 
