@@ -17,6 +17,15 @@ the notable exception of BeardLib.
  - [James Wilkinson](https://github.com/JamesWilko) - BLT LUA (and BLT)
  - [ZNixian](https://znix.xyz) - Hosting this website
 
+## Source Code
+The source code for this project is available on [GitHub](https://github.com/blt4linux/blt4l)
+
+The source code for the platform-independent Lua code is
+also on [GitHub](https://github.com/JamesWilko/Payday-2-BLT-Lua)
+
+The source code for this website is available on both [GitLab](https://gitlab.com/znixian/blt4linux.info)
+and [GitHub](https://github.com/blt4linux/blt4linux.info)
+
 # Installation
 
 ---
