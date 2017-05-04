@@ -4,11 +4,13 @@ layout: default
 
 # About
 BLT4Linux is a Linux port of the popular Better Lua injecTor (BLT)
-modding framework for the action shooter PAYDAY 2.
+modding framework for the First-Person co-op shooter PAYDAY 2.
 
 While it is a rewrite of the C++ part of BLT, it uses the same Lua
-code and is compatible with the majority of PAYDAY 2 mods, with
-the notable exception of BeardLib.
+code and is compatible with the majority of the PAYDAY 2 lua mods that can be found online.
+The only exception to this is Beardlib, which is compatible with lua mods on Linux, but does not
+like loading Custom Assets, such as Custom Heists or the use of the Beardlib Music Module, as
+the Linux version of PAYDAY 2 does not have SysFS to load said assets in-game.
 
 ## Credits
  - [Roman Hargrave](https://github.com/RomanHargrave) - Initial work, code, translations from BLT4WIN
@@ -16,6 +18,7 @@ the notable exception of BeardLib.
  - [Ozymandias117](https://github.com/Ozymandias117) - Fixed subhook on 64-bit platforms
  - [James Wilkinson](https://github.com/JamesWilko) - BLT LUA (and BLT)
  - [ZNixian](https://znix.xyz) - Hosting this website
+ - [Dribbleondo](http://twitter.com/dribbleondo) - Writing some of this websites information.
 
 ## Source Code
 The source code for this project is available on [GitHub](https://github.com/blt4linux/blt4l),
@@ -28,6 +31,26 @@ The source code for this website is available on both [GitLab](https://gitlab.co
 and [GitHub](https://github.com/blt4linux/blt4linux.info), under the GNU GPLv3 License.
 
 # Installation
+
+---
+
+## Installing with binary packages (Debian)
+This is easiest way to go about installing BLT4Linux, as the releases are already compiled,
+ready for use. Go to the [GitHub release page](https://github.com/blt4linux/blt4l/releases/latest)
+and download the archive appropriate for your distro. If you are unsure, select "Debian-Stretch".
+
+Next, extract the archive and move 'mods' and 'libblt_loader.so' to your PAYDAY 2 folder.
+This can be found in "~/.steam/steam/steamapps/common/PAYDAY 2/"
+
+You should find the hook in your build folder, named libblt_loader.so.
+You will need to set LD_PRELOAD for the PAYDAY2 process to find the loader. By default,
+the path should be:
+
+       env LD_PRELOAD="$LD_PRELOAD ./libblt_loader.so" %command% -skip_intro
+
+(The -skip_intro command is optional, but useful for somewhat obvious reasons =P)
+
+If you have set everything up correctly, you should be up and running with the BLT Mod API in PAYDAY 2.
 
 ---
 
@@ -46,20 +69,6 @@ Now, run the installer script:
 
 	$ ./install.sh
 	TODO: Can someone please get some sample output?
-
----
-
-## Installing with binary packages (Debian)
-Go to the [GitHub release page](https://github.com/blt4linux/blt4l/releases/latest)
-and download the archive appropriate for your distro.
-
-Next, extract the archive and move 'mods' and 'libblt_loader.so' to your PAYDAY 2 folder.
-This can be found in "~/.steam/steam/steamapps/common/PAYDAY 2/"
-
-You should find the hook in your build folder, named libblt_loader.so.
-You will need to set LD_PRELOAD for the PAYDAY2 process to find the loader.
-
-If you set everything up correctly, you should be up and running with the BLT mod API in PAYDAY 2.
 
 ---
 
@@ -139,8 +148,7 @@ Compile it:
 You should find the hook in your build folder, named libblt_loader.so.
 
 ### Setting LD_PRELOAD
-TODO: clean up a little
-
+As with the prebuilt, releases, you need to make sure that PAYDAY 2 can find the Lua hook.
 Go into steam, and set the launch command to:
 
 	env LD_PRELOAD="$LD_PRELOAD ./libblt_loader.so" %command% -skip_intro
