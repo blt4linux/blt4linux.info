@@ -68,7 +68,26 @@ First, download a copy of BLT4L and switch to it's directory:
 Now, run the installer script:
 
 	$ ./install.sh
-	TODO: Can someone please get some sample output?
+	Updating submodules: OK
+	Looking for CMakeLists.txt: Found
+	Checking for libcurl4-openssl-dev: Installed
+	Checking for zlib1g-dev: Installed
+	Checking for cmake: Installed
+	Checking for build-essential: Installed
+	Looking for Steam configs: 1 found
+	Would you like to build against libc++? Clang and libc++ must be installed already. [Y/n]: n
+	cmake 'x/blt4l/CMakeLists.txt' -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS='-march=native -mtune=native' -DCMAKE_C_FLAGS='-march=native -mtune=native'
+	Looking for installer_build: Found
+	Running CMake: OK
+	Building BLT: OK
+	Looking for libblt_loader.so: Found
+	Installing loader: OK
+	Looking for ../lua/Payday-2-BLT-Lua/mods: Found
+	Installing lua base: OK
+	Configuring steam: ...
+	... ~/.steam/steam/userdata/x/config/localconfig.vdf: OK
+	... You may need to restart steam for these changes to take effect.
+
 
 ---
 
