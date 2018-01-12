@@ -7,17 +7,18 @@ BLT4Linux is a Linux port of the popular Better Lua injecTor (BLT)
 modding framework for the First-Person co-op shooter PAYDAY 2.
 
 While it is a rewrite of the C++ part of BLT, it uses the same Lua
-code and is compatible with the majority of the PAYDAY 2 lua mods that can be found online.
+code and is compatible with 90% of the PAYDAY 2 lua mods that can be found online.
 The only exception to this is Beardlib, which is compatible with lua mods on Linux, but does not
-like loading Custom Assets, such as Custom Heists or the use of the Beardlib Music Module, as
-the Linux version of PAYDAY 2 does not have SysFS to load said assets in-game.
+like loading Custom Assets, specifically Custom Heists and the Beardlib Music Module (which is now fully 
+merged into Beardlib), as the Linux version of PAYDAY 2. Also loading mod icons for the BLT mod 
+manager don't appear to load due to the Payday 2 Linux binary missing the dependancy libPNG.
 
 ## Credits
  - [Roman Hargrave](https://github.com/RomanHargrave) - Initial work, code, translations from BLT4WIN
  - [Leonard König](https://github.com/LeonardKoenig) - C++ cleanup, linker work
  - [Ozymandias117](https://github.com/Ozymandias117) - Fixed subhook on 64-bit platforms
  - [James Wilkinson](https://github.com/JamesWilko) - BLT LUA (and BLT)
- - [ZNixian](https://znix.xyz) - Hosting this website
+ - [ZNixian](https://znix.xyz) - Hosting this website, and for figuring out how to load Custom assets in Linux Payday 2
  - [Dribbleondo](http://twitter.com/dribbleondo) - Writing some of this websites information.
 
 ## Source Code
@@ -48,7 +49,7 @@ the path should be:
 
        env LD_PRELOAD="$LD_PRELOAD ./libblt_loader.so" %command% -skip_intro
 
-(The -skip_intro command is optional, but useful for somewhat obvious reasons =P)
+(The -skip_intro command is optional, but useful for somewhat obvious reasons)
 
 If you have set everything up correctly, you should be up and running with the BLT Mod API in PAYDAY 2.
 
@@ -98,6 +99,10 @@ do that will vary depending on your distribution and package manager.
  - curl4-openssl
  - zlib
  - cmake
+ 
+ ## If you want to load custom assets, such as Custom HUDS and masks, then you also require:
+ - libc++dev
+ - clang (3.8 or above)
 
 Download a copy of BLT4L:
 
@@ -125,7 +130,34 @@ Configure, ready for building:
 
 	$ mkdir build
 	$ cd build
-	$ cmake ..a
+	
+Run Cmake:
+
+	$ cmake ..
+	-- The C compiler identification is GNU 6.3.1
+	-- The CXX compiler identification is GNU 6.3.1
+	-- Check for working C compiler: /usr/bin/cc
+	-- Check for working C compiler: /usr/bin/cc -- works
+	-- Detecting C compiler ABI info
+	-- Detecting C compiler ABI info - done
+	-- Detecting C compile features
+	-- Detecting C compile features - done
+	-- Check for working CXX compiler: /usr/bin/c++
+	-- Check for working CXX compiler: /usr/bin/c++ -- works
+	-- Detecting CXX compiler ABI info
+	-- Detecting CXX compiler ABI info - done
+	-- Detecting CXX compile features
+	-- Detecting CXX compile features - done
+	-- Found CURL: /usr/lib64/libcurl.so (found version "7.52.1")
+	-- Found OpenSSL: /usr/lib64/libssl.so;/usr/lib64/libcrypto.so (found version "1.0.2k")
+	-- Found ZLIB: /usr/lib64/libz.so (found version "1.2.11")
+	-- Configuring done
+	-- Generating done
+	-- Build files have been written to: blt4l/build
+	
+If you want to use custom asset loading, as described above, you need to run:
+
+	$ cmake -DUSE_LIBCXX=1 ..
 	-- The C compiler identification is GNU 6.3.1
 	-- The CXX compiler identification is GNU 6.3.1
 	-- Check for working C compiler: /usr/bin/cc
